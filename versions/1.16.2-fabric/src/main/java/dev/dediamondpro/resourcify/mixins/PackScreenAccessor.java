@@ -15,38 +15,21 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-//#if FORGE == 1 || NEOFORGE == 1
+package dev.dediamondpro.resourcify.mixins;
 
-package dev.dediamondpro.resourcify
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screen.pack.PackScreen;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.gen.Accessor;
 
-//#if MODERN == 0
-import net.minecraftforge.fml.common.Mod
+import java.io.File;
 
-//#else
-//$$ import dev.dediamondpro.resourcify.platform.EventHandler
-//$$ //#if FORGE == 1
-//$$ import net.minecraftforge.fml.common.Mod
-//$$ //#else
-//$$ //$$
-//$$ //#endif
-//#endif
+@Mixin(PackScreen.class)
+public interface PackScreenAccessor {
 
-//#if MODERN == 0
-@Mod(
-    name = ModInfo.NAME,
-    modid = ModInfo.ID,
-    version = ModInfo.VERSION,
-    modLanguageAdapter = "dev.dediamondpro.resourcify.platform.KotlinLanguageAdapter"
-)
-//#else
-//$$ @Mod(ModInfo.ID)
-//#endif
-object Resourcify {
-    //#if MC > 11202
-    //$$ init {
-    //$$     EventHandler
-    //$$ }
-    //#endif
+    @Accessor("file")
+    File getDirectory();
+
+    @Accessor("parent")
+    Screen getParentScreen();
 }
-
-//#endif

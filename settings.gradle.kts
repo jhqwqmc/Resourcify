@@ -19,22 +19,30 @@ pluginManagement {
     repositories {
         gradlePluginPortal()
         mavenCentral()
+        mavenLocal()
         maven("https://maven.fabricmc.net")
         maven("https://maven.architectury.dev/")
         maven("https://maven.minecraftforge.net")
         maven("https://repo.essential.gg/repository/maven-public")
-    }
-    val egtVersion = "0.3.0"
-    plugins {
-        id("gg.essential.multi-version.root") version egtVersion
+        maven("https://jitpack.io")
+        maven("https://maven.wagyourtail.xyz/releases")
+        maven("https://maven.wagyourtail.xyz/snapshots")
+        maven("https://maven.deftu.xyz/releases")
     }
     dependencyResolutionManagement {
         versionCatalogs {
             create("libs")
-            create("egt") {
-                plugin("multiversion", "gg.essential.multi-version").version(egtVersion)
-                plugin("multiversionRoot", "gg.essential.multi-version.root").version(egtVersion)
-                plugin("defaults", "gg.essential.defaults").version(egtVersion)
+        }
+        resolutionStrategy {
+            eachPlugin  {
+                when(requested.id.id) {
+                    "dev.deftu.gradle.preprocess" -> {
+                        useModule("dev.deftu:preprocessor:${requested.version}")
+                    }
+                    "dev.deftu.gradle.preprocess-root" -> {
+                        useModule("dev.deftu:preprocessor:${requested.version}")
+                    }
+                }
             }
         }
     }
@@ -50,15 +58,17 @@ listOf(
     "1.12.2-forge",
     "1.16.2-forge",
     "1.16.2-fabric",
-    "1.18.2-forge",
-    "1.18.2-fabric",
-    "1.19.2-fabric",
-    "1.19.2-forge",
-    "1.19.4-forge",
-    "1.19.4-fabric",
-    "1.20.1-forge",
-    "1.20.1-fabric",
-    "1.20.2-fabric"
+    // "1.18.2-forge",
+    // "1.18.2-fabric",
+    // "1.19.2-fabric",
+    // "1.19.2-forge",
+    // "1.19.4-forge",
+    // "1.19.4-fabric",
+    // "1.20.1-forge",
+    // "1.20.1-fabric",
+    // "1.20.4-forge",
+    // "1.20.4-fabric",
+    // "1.20.4-neoforge",
 ).forEach { version ->
     include(":$version")
     project(":$version").apply {

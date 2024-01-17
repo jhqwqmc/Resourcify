@@ -41,13 +41,13 @@ abstract class PaginatedScreen : WindowScreen(version = ElementaVersion.V2, draw
 
     override fun onDrawScreen(matrixStack: UMatrixStack, mouseX: Int, mouseY: Int, partialTicks: Float) {
         //#if MC>=12000
-        //$$ renderBackgroundTexture(DrawContext(client, client!!.bufferBuilders.entityVertexConsumers))
+        //$$ this.renderBackgroundTexture(DrawContext(client, client!!.bufferBuilders.entityVertexConsumers))
         //#elseif MC>=11904
-        //$$ renderBackgroundTexture(matrixStack.toMC())
+        //$$ this.renderBackgroundTexture(matrixStack.toMC())
         //#elseif MC>=11600
-        //$$ renderDirtBackground(0)
+        //$$ this.renderDirtBackground(0)
         //#else
-        drawBackground(0)
+        this.drawBackground(0)
         //#endif
         super.onDrawScreen(matrixStack, mouseX, mouseY, partialTicks)
     }

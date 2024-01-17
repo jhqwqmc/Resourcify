@@ -17,7 +17,7 @@
 
 package dev.dediamondpro.resourcify.platform
 
-//#if FORGE==1 && MODERN == 1
+//#if FORGE==1 && MODERN == 1 || NEOFORGE == 1 && MODERN == 1
 //$$ import dev.dediamondpro.resourcify.gui.pack.PackScreensAddition
 //$$ import dev.dediamondpro.resourcify.platform.Platform
 //$$ import net.minecraftforge.eventbus.api.EventPriority
