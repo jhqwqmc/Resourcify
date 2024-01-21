@@ -1,6 +1,7 @@
 modLoader = "kotlinforforge"
 loaderVersion = "[1,)"
 license = "LGPL 3.0"
+issueTrackerURL = "https://github.com/DeDiamondPro/Resourcify/issues"
 showAsResourcePack = false
 
 [[mods]]
@@ -10,6 +11,8 @@ displayName = "Resourcify"
 authors = "DeDiamondPro"
 description = "In-game resource pack, data pack and shader browser"
 logoFile = "icon.png"
+updateJSONURL = "https://api.modrinth.com/updates/resourcify/forge_updates.json"
+displayTest = "IGNORE_ALL_VERSION"
 
 [[mixins]]
 config = "forge.mixins.resourcify.json"

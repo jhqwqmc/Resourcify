@@ -65,7 +65,7 @@ dependencies {
     implementation("thedarkcolour:kotlinforforge-neoforge:4.10.0")
     compileOnly(project(":1.20.4-forge"))
 
-    shade("gg.essential:universalcraft-1.20.4-forge:${libs.versions.universal.get()}") {
+    shade("gg.essential:universalcraft-1.20.4-forge:DIAMOND-1") {
         isTransitive = false
     }
     // Always shade elementa since we use a custom version, relocate to avoid conflicts
