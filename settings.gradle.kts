@@ -24,10 +24,20 @@ pluginManagement {
         maven("https://maven.minecraftforge.net")
         maven("https://repo.essential.gg/repository/maven-public")
     }
-    val egtVersion = "0.3.0"
-    plugins {
-        id("gg.essential.multi-version.root") version egtVersion
+    resolutionStrategy {
+        eachPlugin {
+            when (requested.id.id) {
+                "com.replaymod.preprocess" -> {
+                    useModule("com.github.replaymod:preprocessor:${requested.version}")
+                }
+
+                "com.replaymod.preprocess-root" -> {
+                    useModule("com.github.replaymod:preprocessor:${requested.version}")
+                }
+            }
+        }
     }
+    val egtVersion = "0.3.0"
     dependencyResolutionManagement {
         versionCatalogs {
             create("libs")
@@ -59,11 +69,16 @@ listOf(
     "1.20.1-forge",
     "1.20.1-fabric",
     "1.20.4-forge",
-    "1.20.4-fabric"
+    "1.20.4-neoforge",
+    "1.20.4-fabric",
 ).forEach { version ->
     include(":$version")
     project(":$version").apply {
         projectDir = file("versions/$version")
-        buildFileName = "../../build.gradle.kts"
+        buildFileName = if (version.contains("neoforge")) {
+            "../../neoforge.gradle.kts"
+        } else {
+            "../../build.gradle.kts"
+        }
     }
 }

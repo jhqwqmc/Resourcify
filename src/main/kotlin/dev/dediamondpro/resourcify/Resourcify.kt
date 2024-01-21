@@ -23,10 +23,15 @@ package dev.dediamondpro.resourcify
 import net.minecraftforge.fml.common.Mod
 //#else
 //$$ import dev.dediamondpro.resourcify.platform.EventHandler
-//$$ import thedarkcolour.kotlinforforge.forge.FORGE_BUS
-//$$ import thedarkcolour.kotlinforforge.forge.MOD_BUS
 //$$ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
 //$$ import net.minecraftforge.fml.common.Mod
+//#endif
+//#if NEOFORGE == 1 && MODERN == 1
+//$$ import thedarkcolour.kotlinforforge.neoforge.forge.FORGE_BUS
+//$$ import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
+//#elseif MODERN == 1
+//$$ import thedarkcolour.kotlinforforge.forge.FORGE_BUS
+//$$ import thedarkcolour.kotlinforforge.forge.MOD_BUS
 //#endif
 
 //#if MODERN == 0

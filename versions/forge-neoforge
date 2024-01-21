@@ -1,0 +1,4 @@
+net.neoforged.fml.common.Mod net.minecraftforge.fml.common.Mod
+net.neoforged.fml.event.lifecycle.FMLClientSetupEvent net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
+net.neoforged.bus.api.SubscribeEvent net.minecraftforge.eventbus.api.SubscribeEvent
+net.neoforged.neoforge.client.event.ScreenEvent net.minecraftforge.client.event.ScreenEvent

@@ -20,7 +20,6 @@ package dev.dediamondpro.resourcify.platform
 //#if FORGE==1 && MODERN == 1
 //$$ import dev.dediamondpro.resourcify.gui.pack.PackScreensAddition
 //$$ import dev.dediamondpro.resourcify.platform.Platform
-//$$ import net.minecraftforge.eventbus.api.EventPriority
 //$$ import net.minecraftforge.eventbus.api.SubscribeEvent
 //$$
 //$$ //#if MC <= 11800
@@ -31,7 +30,7 @@ package dev.dediamondpro.resourcify.platform
 //$$
 //$$ object EventHandler {
 //$$
-//$$     @SubscribeEvent(priority = EventPriority.HIGHEST)
+//$$     @SubscribeEvent
 //$$     fun onMouseClicked(
 //$$        event:
 //$$        //#if MC <= 11800

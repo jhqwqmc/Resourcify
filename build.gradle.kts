@@ -19,15 +19,14 @@ import com.matthewprenger.cursegradle.CurseArtifact
 import com.matthewprenger.cursegradle.CurseProject
 import com.matthewprenger.cursegradle.CurseRelation
 import com.matthewprenger.cursegradle.Options
-import com.replaymod.gradle.preprocess.PreprocessTask
 import gg.essential.gradle.util.noServerRunConfigs
 import gg.essential.gradle.util.setJvmDefault
 import org.jetbrains.kotlin.com.google.gson.Gson
 
 plugins {
     alias(libs.plugins.kotlin)
-    id(egt.plugins.multiversion.get().pluginId)
-    id(egt.plugins.defaults.get().pluginId)
+    alias(egt.plugins.multiversion)
+    alias(egt.plugins.defaults)
     alias(libs.plugins.shadow)
     alias(libs.plugins.blossom)
     alias(libs.plugins.minotaur)
@@ -40,17 +39,7 @@ val mod_id: String by project
 
 preprocess {
     vars.put("MODERN", if (project.platform.mcMinor >= 16) 1 else 0)
-    keywords.set(
-        mutableMapOf(
-            ".java" to PreprocessTask.DEFAULT_KEYWORDS,
-            ".kt" to PreprocessTask.DEFAULT_KEYWORDS,
-            ".gradle" to PreprocessTask.DEFAULT_KEYWORDS,
-            ".json" to PreprocessTask.DEFAULT_KEYWORDS,
-            ".mcmeta" to PreprocessTask.DEFAULT_KEYWORDS,
-            ".cfg" to PreprocessTask.CFG_KEYWORDS,
-            ".accesswidener" to PreprocessTask.CFG_KEYWORDS
-        )
-    )
+    vars.put("NEOFORGE", 0)
 }
 
 blossom {
@@ -197,10 +186,6 @@ tasks {
                 }
             }
         }
-    }
-    withType<Jar> {
-        from(rootProject.file("LICENSE"))
-        from(rootProject.file("LICENSE.LESSER"))
     }
     named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar") {
         archiveClassifier.set("dev")

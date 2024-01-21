@@ -19,7 +19,7 @@ plugins {
     alias(libs.plugins.kotlin) apply false
     alias(libs.plugins.shadow) apply false
     alias(libs.plugins.blossom) apply false
-    alias(egt.plugins.multiversionRoot)
+    id("com.replaymod.preprocess-root") version "fad42fb"
 }
 
 preprocess {
@@ -31,6 +31,8 @@ preprocess {
     val forge11904 = createNode("1.19.4-forge", 11904, "srg")
     val forge12001 = createNode("1.20.1-forge", 12001, "srg")
     val forge12004 = createNode("1.20.4-forge", 12004, "srg")
+
+    val neoForge12004 = createNode("1.20.4-neoforge", 12004, "srg")
 
     val fabric11602 = createNode("1.16.2-fabric", 11602, "yarn")
     val fabric11801 = createNode("1.18.2-fabric", 11802, "yarn")
@@ -47,10 +49,21 @@ preprocess {
     forge12001.link(fabric12001)
     forge12004.link(forge12001)
 
+    neoForge12004.link(forge12004, file("versions/forge-neoforge"))
+
     fabric11602.link(forge11602)
     fabric11801.link(fabric11602)
     fabric11902.link(fabric11801)
     fabric11904.link(fabric11902)
     fabric12001.link(fabric11904)
     fabric12004.link(fabric12001)
+}
+
+subprojects {
+    tasks {
+        withType<Jar> {
+            from(rootProject.file("LICENSE"))
+            from(rootProject.file("LICENSE.LESSER"))
+        }
+    }
 }
